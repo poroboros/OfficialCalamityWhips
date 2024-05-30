@@ -834,3 +834,8 @@ LiliesOfFinality: {
 		'Wake up'
 		'''
 }
+
+UnderBite: {
+	DisplayName: Under Bite
+	Tooltip: ""
+}

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace CalamityMod.Projectiles.Melee
 {
-    public class MourningstarFlail : BaseWhipProjectile, ILocalizedModType
+    public class MourningstarFlail : BaseFlailProjectile, ILocalizedModType
     {
         public new string LocalizationCategory => "Projectiles.Melee";
         public override void SetDefaults()

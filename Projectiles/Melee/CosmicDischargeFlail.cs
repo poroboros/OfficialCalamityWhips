@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace CalamityMod.Projectiles.Melee
 {
-    public class CosmicDischargeFlail : BaseWhipProjectile, ILocalizedModType
+    public class CosmicDischargeFlail : BaseFlailProjectile, ILocalizedModType
     {
         public new string LocalizationCategory => "Projectiles.Melee";
         public override void SetDefaults()

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace CalamityMod.Projectiles.Melee
 {
-    public class CrescentMoonFlail : BaseWhipProjectile, ILocalizedModType
+    public class CrescentMoonFlail : BaseFlailProjectile, ILocalizedModType
     {
         public new string LocalizationCategory => "Projectiles.Melee";
         public int moonCounter = 6;
