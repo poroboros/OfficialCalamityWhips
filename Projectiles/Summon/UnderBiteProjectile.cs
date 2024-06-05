@@ -1,4 +1,5 @@
-﻿using CalamityMod.Projectiles.BaseProjectiles;
+﻿using CalamityMod.Buffs.Summon.Whips;
+using CalamityMod.Projectiles.BaseProjectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -133,8 +134,8 @@ namespace CalamityMod.Projectiles.Summon
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Venom, 240);
-            // target.GetGlobalNPC<CatalystTag>().chomperRot = Projectile.rotation;
-            // target.GetGlobalNPC<CatalystTag>().chomperOffset = Projectile.Center - target.Center;
+            target.AddBuff(ModContent.BuffType<UnderBiteWhipDebuff>(), 240);
+            target.Calamity().UnderBiteSkullOffset = Projectile.Center - target.Center;
             // CatalystTag.ApplyTagDebuff(target, CatalystTagID.Underbite, 240);
         }
 

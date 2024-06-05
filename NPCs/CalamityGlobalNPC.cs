@@ -253,6 +253,7 @@ namespace CalamityMod.NPCs
         public int pFlames = 0;
         public int aCrunch = 0;
         public int crumble = 0;
+        public int underbiteTag = 0;
 
         public const int veriumDoomTime = 90;
         public int veriumDoomTimer = 0;
@@ -347,6 +348,7 @@ namespace CalamityMod.NPCs
 
         // Drawing variables.
         public FireParticleSet VulnerabilityHexFireDrawer = null;
+        public Vector2 UnderBiteSkullOffset = Vector2.Zero;
 
         // Boss Enrage variable for use with the boss health UI.
         // The logic behind this is as follows:
@@ -503,9 +505,11 @@ namespace CalamityMod.NPCs
             myClone.banishingFire = banishingFire;
             myClone.wither = wither;
             myClone.RancorBurnTime = RancorBurnTime;
+            myClone.underbiteTag = underbiteTag;
 
             // This gets set up as needed.
             myClone.VulnerabilityHexFireDrawer = null;
+            myClone.UnderBiteSkullOffset = UnderBiteSkullOffset;
 
             myClone.CurrentlyEnraged = CurrentlyEnraged;
 
@@ -5089,6 +5093,9 @@ namespace CalamityMod.NPCs
             if (mythrilNerfTimer > 0)
                 mythrilNerfTimer--;
 
+            if (underbiteTag > 0)
+                underbiteTag--;
+
             if (veriumDoomTimer > 0)
                 veriumDoomTimer--;
             if (veriumDoomTimer == 0 && veriumDoomMarked)
@@ -5654,8 +5661,11 @@ namespace CalamityMod.NPCs
                             modifiers.FlatBonusDamage += -20f * TagDamageMult;
                             modifiers.ScalingBonusDamage += (BalancingConstants.KaleidoscopeTagDamageMultiplier - 1f) * TagDamageMult;
                             break;
+
                     }
+                    
                 }
+                
             }
             //BuffType cannot be used in switch case, so that has to be handled outside of it
             //Verify that the owner of the proj has psc state higher or equal to psc buffs
@@ -5673,6 +5683,11 @@ namespace CalamityMod.NPCs
                     var particle = new FlameParticle(position, 50, 0.25f, power, color * (Main.dayTime ? 1f : 1.25f), color * (Main.dayTime ? 1.25f : 1f));
                     GeneralParticleHandler.SpawnParticle(particle);
                 }
+            }
+            
+            if (npc.HasBuff(ModContent.BuffType<UnderBiteWhipDebuff>())) //Simple 6% tag
+            {
+                modifiers.ScalingBonusDamage += 0.06f;
             }
         }
         #endregion
@@ -7553,6 +7568,12 @@ namespace CalamityMod.NPCs
                         }
                     }
                 }
+            }
+
+
+            if (npc.HasBuff(BuffType<UnderBiteWhipDebuff>()))
+            {
+                UnderBiteWhipDebuff.PostDraw(npc, spriteBatch, screenPos, drawColor);
             }
         }
 

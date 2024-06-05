@@ -1520,3 +1520,8 @@ LiliesOfFinalityBuff: {
 	DisplayName: Finality
 	Description: Remember our promise
 }
+
+UnderBiteWhipDebuff: {
+	DisplayName: Under Bite Whip Debuff
+	Description: Mods.CalamityMod.Buffs.UnderBiteWhipDebuff.Description
+}
